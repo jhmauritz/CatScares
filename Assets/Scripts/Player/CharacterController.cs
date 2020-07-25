@@ -21,6 +21,7 @@ public class CharacterController : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	Animator anim;
 
 	[Header("Events")]
 	[Space]
@@ -36,12 +37,33 @@ public class CharacterController : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+	}
+
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.D))
+		{
+			anim.SetBool("isWalking", true);
+		}
+		else if (Input.GetKeyUp(KeyCode.D))
+		{
+			anim.SetBool("isWalking", false);
+		}
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			anim.SetBool("isWalking", true);
+		}
+		else if (Input.GetKeyUp(KeyCode.A))
+		{
+			anim.SetBool("isWalking", false);
+		}
 	}
 
 	private void FixedUpdate()
