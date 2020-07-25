@@ -6,27 +6,19 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
 
+    public float damage;
+
     public override void Update()
     {
         base.Update();
         gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Health: " + currHealth;
-        Debug.LogError(invTimer);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.GetComponent<PlayerHealth>())
         {
-            TakeDamage(5);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 }

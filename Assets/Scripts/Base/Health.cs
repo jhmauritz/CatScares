@@ -23,8 +23,6 @@ public class Health : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.LogError(invTimer);
-
         if(invulnerable)
         {
             invTimer -= Time.deltaTime;
