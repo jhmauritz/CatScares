@@ -11,24 +11,28 @@ public class GunBase : MonoBehaviour
     [HideInInspector]
     public float currBullet;
     bool isFiring;
+    Animator anim;
 
     public virtual void Start()
     {
         currBullet = maxBullet;
+        anim = GetComponent<Animator>();
     }
 
     public virtual void Update()
     {
         if(Time.timeScale > 0)
         {
-            if(Input.GetButtonDown("Fire1") && currBullet >= 0)
+            if(Input.GetButton("Fire1") && currBullet >= 0)
             {
                 StartCoroutine(Shoot());
+                anim.SetBool("isShooting", true);
             }
 
             else if(Input.GetButtonUp("Fire1"))
             {
                 isFiring = false;
+                anim.SetBool("isShooting", false);
             }
         }
     }
