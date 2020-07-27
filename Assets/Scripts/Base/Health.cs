@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     bool invulnerable;
     public float invTimer = 0.5f;
 
+    public bool isNotInvulnerable;
+
 
     public virtual void Start()
     {
@@ -36,9 +38,17 @@ public class Health : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (!invulnerable)
+        if (!isNotInvulnerable)
         {
-            invulnerable = true;
+            if (!invulnerable)
+            {
+                invulnerable = true;
+                anim.SetTrigger("isDamaged");
+                currHealth -= damage;
+            }
+        }
+        else
+        {
             anim.SetTrigger("isDamaged");
             currHealth -= damage;
         }

@@ -308,7 +308,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 76.4
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -462,7 +462,7 @@ Transform:
   m_Children:
   - {fileID: 394934819}
   m_Father: {fileID: 1807606311}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &533495375
 MonoBehaviour:
@@ -480,6 +480,8 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 394934819}
   maxBullet: 500
+  shootTimerMax: 0.2
+  shootTimer: 0
   currBullet: 0
 --- !u!212 &533495376
 SpriteRenderer:
@@ -518,8 +520,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 689258823
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4726644748478855400, guid: f361ba0df91198c4e8004324cb7d1848,
     type: 3}
@@ -1213,7 +1215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323725974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.97, y: 0.93, z: 0}
+  m_LocalPosition: {x: -7.65, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 550247631}
@@ -1271,6 +1273,7 @@ MonoBehaviour:
   maxHealth: 10
   currHealth: 0
   invTimer: 0
+  isNotInvulnerable: 1
   damage: 10
 --- !u!50 &1323725980
 Rigidbody2D:
@@ -1428,9 +1431,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 531889533
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 5545353158167819237, guid: bd21649ec16094549b46b3ef9e67d6a8,
     type: 3}
   m_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
@@ -1454,8 +1457,8 @@ Transform:
   m_LocalPosition: {x: 0.17, y: 0.582, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
-  - {fileID: 2114643497}
   - {fileID: 533495374}
+  - {fileID: 2114643497}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1597,6 +1600,7 @@ MonoBehaviour:
   maxHealth: 10
   currHealth: 0
   invTimer: 0.5
+  isNotInvulnerable: 0
 --- !u!1 &2048873112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1723,7 @@ Transform:
   - {fileID: 1679389425}
   - {fileID: 517214419}
   m_Father: {fileID: 1807606311}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139566127
 GameObject:
