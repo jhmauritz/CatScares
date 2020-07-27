@@ -30,12 +30,6 @@ public class GunBase : MonoBehaviour
 
     public virtual void Update()
     {
-        var pos = Camera.main.WorldToScreenPoint(transform.position);
-        var dir = Input.mousePosition - pos;
-        var dirNeg = Input.mousePosition - pos;
-
-        var angle = Mathf.Clamp(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, -20, 20);
-        var angleNegative = Mathf.Clamp(Mathf.Atan2(dirNeg.y, dirNeg.x) * Mathf.Rad2Deg, -20, 20);
 
         if (Time.timeScale > 0)
         {
@@ -61,19 +55,7 @@ public class GunBase : MonoBehaviour
                 isFiring = false;
                 anim.SetBool("isShooting", false);
             }
-
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            if (cc.m_FacingRight)
-            {
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
-            else if(!cc.m_FacingRight)
-            {
-                transform.rotation = Quaternion.AngleAxis(angleNegative, Vector3.forward);
-            }
-
-            
+       
         }
     }
 

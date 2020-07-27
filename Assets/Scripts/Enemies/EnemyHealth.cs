@@ -7,6 +7,8 @@ public class EnemyHealth : Health
 {
 
     public float damage;
+    public Transform patrolPos1;
+    public Transform patrolPos2;
 
     public override void Update()
     {

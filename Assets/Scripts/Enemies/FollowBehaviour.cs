@@ -18,12 +18,13 @@ public class FollowBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (playerPos == null) return;
-            
-        animator.transform.position = Vector2.MoveTowards(animator.transform.position, playerPos.position, speed * Time.deltaTime);
+        else
+            animator.transform.position = Vector2.MoveTowards(animator.transform.position, playerPos.position, speed * Time.deltaTime);
+
 
         float dist = Vector2.Distance(animator.transform.position, playerPos.position);
 
-        if (dist > spotRadius)
+        if (dist > spotRadius || playerPos == null)
         {
             animator.SetBool("isFollowing", false);
         }

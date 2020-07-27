@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class IdleBehaviour : StateMachineBehaviour
@@ -7,11 +8,24 @@ public class IdleBehaviour : StateMachineBehaviour
     Transform playerPos;
     public float spotRadius;
 
+    public Transform pos1;
+    public Transform pos2;
+    public float speed;
+    Vector2 posVect1;
+    Vector2 posVect2;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        pos1 = animator.gameObject.GetComponent<EnemyHealth>().patrolPos1;
+        pos2 = animator.gameObject.GetComponent<EnemyHealth>().patrolPos2;
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+
+        posVect1 = pos1.position;
+        posVect2 = pos2.position;
     }
+
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,6 +39,7 @@ public class IdleBehaviour : StateMachineBehaviour
         else
         {
             animator.SetBool("isFollowing", false);
+            animator.gameObject.transform.position = Vector2.Lerp(posVect1, posVect2, Mathf.PingPong(Time.fixedTime * speed, 1f));
         }
     }
 

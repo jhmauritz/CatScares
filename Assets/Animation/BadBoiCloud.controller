@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spotRadius: 5
+  pos1: {fileID: 0}
+  pos2: {fileID: 0}
+  speed: 0.5
 --- !u!1102 &-8070132554741848690
 AnimatorState:
   serializedVersion: 5
