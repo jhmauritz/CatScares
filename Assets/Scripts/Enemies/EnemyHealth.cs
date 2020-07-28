@@ -10,6 +10,12 @@ public class EnemyHealth : Health
     public Transform patrolPos1;
     public Transform patrolPos2;
 
+    public override void Start()
+    {
+        base.Start();
+        currHealth = maxHealth;
+    }
+
     public override void Update()
     {
         base.Update();

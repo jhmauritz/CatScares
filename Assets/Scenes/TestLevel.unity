@@ -959,6 +959,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7763885778374315746, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: saveable.health
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7763885778374315753, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: m_Name

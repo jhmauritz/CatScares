@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float maxHealth;
+    [SerializeField] public float maxHealth;
     public float currHealth;
 
     Animator anim;
@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
     public virtual void Start()
     {
         anim = GetComponent<Animator>();
-        currHealth = maxHealth;
+        //currHealth = maxHealth;
         if (!isNotInvulnerable)
         {
             healthbar.SetMaxHealth(currHealth);
