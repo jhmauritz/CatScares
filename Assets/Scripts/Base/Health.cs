@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Health : MonoBehaviour
     public float currHealth;
 
     Animator anim;
+    public Healthbar healthbar;
 
     //invulnerableTimer
     bool invulnerable;
@@ -21,6 +23,15 @@ public class Health : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         currHealth = maxHealth;
+        if (!isNotInvulnerable)
+        {
+            healthbar.SetMaxHealth(currHealth);
+        }
+        else
+        {
+            return;
+        }
+
     }
 
     public virtual void Update()
@@ -45,12 +56,14 @@ public class Health : MonoBehaviour
                 invulnerable = true;
                 anim.SetTrigger("isDamaged");
                 currHealth -= damage;
+                healthbar.SetHealth(currHealth);
             }
         }
         else
         {
             anim.SetTrigger("isDamaged");
             currHealth -= damage;
+            //healthbar.SetHealth(currHealth);
         }
 
         if(currHealth <= 0)
