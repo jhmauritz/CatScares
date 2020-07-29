@@ -691,18 +691,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1972346163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4495922501319184707, guid: 86879c1725dd8444ebd6324b55e1965b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7763885779889728716}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2c7167844c4a445b275f02764b1d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2048873112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,60 +1047,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
-      propertyPath: cachedSaveableComponents.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: cachedSaveableComponents.Array.data[0].identifier
-      value: PlayerPosSave
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: cachedSaveableComponents.Array.data[0].monoBehaviour
-      value: 
-      objectReference: {fileID: 1972346163}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
       propertyPath: saveIdentification
-      value: Player
+      value: TestLevel-Leo-d21ca
       objectReference: {fileID: 0}
     - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: sceneName
       value: TestLevel
       objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: loadOnce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: manualSaveLoad
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: cachedSaveableComponents.Array.data[1].identifier
-      value: PlayerSceneSave
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: cachedSaveableComponents.Array.data[1].monoBehaviour
-      value: 
-      objectReference: {fileID: 7763885779889728717}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86879c1725dd8444ebd6324b55e1965b, type: 3}
---- !u!114 &7763885779889728717 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 435479847953942453, guid: 86879c1725dd8444ebd6324b55e1965b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7763885779889728716}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d984d94356237da4eb1e40d78f870116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
