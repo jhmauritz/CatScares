@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveButton : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SaveButton : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
-            SaveMaster.WriteActiveSaveToDisk();
+            
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public void PlayButton()
+    public void LoadButton()
     {
 
     }
