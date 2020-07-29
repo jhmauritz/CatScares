@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
     public virtual void Start()
     {
         anim = GetComponent<Animator>();
-        //currHealth = maxHealth;
+        currHealth = maxHealth;
         if (!isNotInvulnerable)
         {
             healthbar.SetMaxHealth(currHealth);
@@ -31,7 +31,6 @@ public class Health : MonoBehaviour
         {
             return;
         }
-
     }
 
     public virtual void Update()
