@@ -17,9 +17,7 @@ public class IdleBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        pos1 = animator.gameObject.GetComponent<EnemyHealth>().patrolPos1;
-        pos2 = animator.gameObject.GetComponent<EnemyHealth>().patrolPos2;
+        
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
 
         posVect1 = pos1.position;

@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] public float maxHealth;
     public float currHealth;
 
-    Animator anim;
+    public Animator anim;
     public Healthbar healthbar;
 
     //invulnerableTimer
@@ -21,11 +21,12 @@ public class Health : MonoBehaviour
 
     public virtual void Start()
     {
-        anim = GetComponent<Animator>();
+        
         currHealth = maxHealth;
         if (!isNotInvulnerable)
         {
             healthbar.SetMaxHealth(currHealth);
+            anim = GetComponent<Animator>();
         }
         else
         {
