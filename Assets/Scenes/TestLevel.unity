@@ -1048,17 +1048,12 @@ PrefabInstance:
     - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: saveIdentification
-      value: TestLevel-Leo-d21ca
+      value: TestLevel-Leo-7fe5b
       objectReference: {fileID: 0}
     - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: sceneName
       value: TestLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955857444838294103, guid: 86879c1725dd8444ebd6324b55e1965b,
-        type: 3}
-      propertyPath: manualSaveLoad
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86879c1725dd8444ebd6324b55e1965b, type: 3}

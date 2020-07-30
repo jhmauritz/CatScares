@@ -563,7 +563,6 @@ GameObject:
   - component: {fileID: 1109333119}
   - component: {fileID: 1109333118}
   - component: {fileID: 1109333120}
-  - component: {fileID: 1109333121}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -645,19 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d65afd4c170442a9c573d38444e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  savedScene: scene
---- !u!114 &1109333121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109333116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d984d94356237da4eb1e40d78f870116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  loadButton: {fileID: 1436282057}
 --- !u!1 &1162142091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1177,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1563044073}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1109333120}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: NewGameButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1563044073
 MonoBehaviour:
   m_ObjectHideFlags: 0

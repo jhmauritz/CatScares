@@ -9,7 +9,10 @@ public class SaveButton : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
+            SaveMaster.SetSlot(0, false);
+            SaveMaster.SetString("scene", gameObject.scene.name);
             SaveMaster.WriteActiveSaveToDisk();
+            Debug.Log("Saved");
         }
     }
 }

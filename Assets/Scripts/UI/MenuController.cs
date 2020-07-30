@@ -9,26 +9,48 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public string savedScene;
+    public GameObject loadButton;
 
-    private SaveScene saveSceneData;
+    private string checkforSave;
 
     private void Start()
     {
-        saveSceneData = GetComponent<SaveScene>();
+        checkforSave = SaveMaster.GetString("scene");
+    }
+
+    private void Update()
+    {
+        if (string.IsNullOrEmpty(checkforSave))
+        {
+            loadButton.SetActive(false);
+        }
+        else
+        {
+            loadButton.SetActive(true);
+        }
     }
 
     public void LoadButton()
     {
-        int savedSceneJson = JsonUtility.FromJson<SaveScene.SaveData>("json").scene;
-        Debug.Log(savedSceneJson);
+        SaveMaster.SetSlot(0, false);
+
+        string sceneName = SaveMaster.GetString("scene");
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            Debug.Log("No level set for this game.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            // Load the saved scene name
+            SceneManager.LoadScene(sceneName);
+        }
     }
 
-    public void LoadLastSave(string data)
+    public void NewGameButton()
     {
-        
-        var savedScene = JsonUtility.FromJson<SaveScene.SaveData>(data).scene;
-        SceneManager.LoadScene(savedScene);
+        SaveMaster.DeleteSave(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
 

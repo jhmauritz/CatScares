@@ -20,6 +20,21 @@ namespace Lowscope.Saving.Components
             public Vector3 position;
         }
 
+        private void Start()
+        {
+            string checkForSave = SaveMaster.GetString("scene");
+            
+            
+            if (string.IsNullOrEmpty(checkForSave))
+            {
+                return;
+            }
+            else
+            {
+                SaveMaster.SyncLoad();
+            }
+        }
+
         public void OnLoad(string data)
         {
             var pos = JsonUtility.FromJson<SaveData>(data).position;
