@@ -9,7 +9,7 @@ namespace Lowscope.Saving.Components
 {
     public class SaveScene : MonoBehaviour, ISaveable
     {
-        int savedScene;
+        public int savedScene;
 
         [Serializable]
         public struct SaveData
