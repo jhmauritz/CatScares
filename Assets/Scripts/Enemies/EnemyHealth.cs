@@ -18,7 +18,7 @@ public class EnemyHealth : Health
     public override void Update()
     {
         base.Update();
-        gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Health: " + currHealth;
+        //gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Health: " + currHealth;
     }
 
     public override void TakeDamage(float damage)

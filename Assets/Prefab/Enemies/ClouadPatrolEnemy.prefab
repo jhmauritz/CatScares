@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 6122569968783857600}
   - component: {fileID: 6122569968783857615}
   - component: {fileID: 6122569968783857601}
-  - component: {fileID: 6122569968783857603}
   m_Layer: 0
   m_Name: GFXEnemy
   m_TagString: Enemy
@@ -202,25 +201,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6122569968783857603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6122569968783857614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793d05961a4338a4f958a883720fd5fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  currHealth: 0
-  anim: {fileID: 0}
-  healthbar: {fileID: 0}
-  invTimer: 0
-  isNotInvulnerable: 1
-  damage: 10
 --- !u!1 &6122569969739076665
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +215,7 @@ GameObject:
   - component: {fileID: 6122569969739076667}
   - component: {fileID: 6122569969739076671}
   - component: {fileID: 6122569969739076670}
+  - component: {fileID: 6544379725891012214}
   m_Layer: 0
   m_Name: ClouadPatrolEnemy
   m_TagString: Untagged
@@ -309,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currHealth: 0
-  anim: {fileID: 0}
+  anim: {fileID: 6122569968783857601}
   healthbar: {fileID: 0}
   invTimer: 0.5
   isNotInvulnerable: 1
@@ -378,6 +359,26 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &6544379725891012214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122569969739076665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d482c4d42248a49888a82b38d6af10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  state: 0
+  anim: {fileID: 6122569968783857601}
+  delay: 0
+  spotRadius: 3
+  attackRadius: 0
 --- !u!1 &6122569969924010871
 GameObject:
   m_ObjectHideFlags: 0

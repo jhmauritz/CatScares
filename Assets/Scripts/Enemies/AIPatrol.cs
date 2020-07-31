@@ -6,41 +6,113 @@ using Pathfinding;
 
 public class AIPatrol : MonoBehaviour
 {
-    public Transform[] patrolPoints;
-    public Path path;
-    public float speed = 3;
-    public float nextWaypointDistance = 3;
-    public bool reachedEndOfPath;
+    public Transform[] arrayPoints;
+
+    public enum States
+    {
+        PATROL,
+        FOLLOW,
+        ATTACK
+    };
+
+    public States state = States.PATROL;
+    public Animator anim;
     
+    Transform[] patrolPoints;
+    public float delay = 0;
+    public float spotRadius;
+    public float attackRadius;
+    
+    IAstarAI agent;
+    float switchTime = float.PositiveInfinity;
     private Seeker seeker;
     private Transform player;
-    private int currWaypoint = 0;
+    private int index = 0;
+    
+
+    private void Awake()
+    {
+        patrolPoints = arrayPoints;
+    }
 
     private void Start()
     {
         seeker = GetComponent<Seeker>();
+        agent = GetComponent<IAstarAI>();
         player = GameObject.FindObjectOfType<PlayerHealth>().transform;
-        
-        //go to first part of the path
-        seeker.StartPath(transform.position, patrolPoints[1].position, OnPathComplete);
-    }
-
-    public void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            //Reset Waypoints
-            currWaypoint = 0;
-        }
     }
 
     private void Update()
     {
-        if (path == null)
+        PlayerCheck();
+        
+        switch (state)
+        {
+            case States.PATROL:
+                Patrol();
+                break;
+            case States.FOLLOW:
+                FollowPLayer();
+                break;
+            case States.ATTACK:
+                Attack();
+                break;
+        }
+    }
+
+    void PlayerCheck()
+    {
+        float followDist = Vector2.Distance(transform.position, player.position);
+
+        if (followDist <= spotRadius)
+        {
+            state = States.FOLLOW;
+        }
+        
+        if (followDist > spotRadius)
+        {
+            state = States.PATROL;
+        }
+        
+        if (followDist <= attackRadius)
+        {
+            state = States.ATTACK;
+        }
+    }
+
+    void FollowPLayer()
+    {
+        if(player != null)
+            agent.destination = player.position;
+    }
+
+    void Attack()
+    {
+        Debug.Log("Attack");
+    }
+
+    void Patrol()
+    {
+        if (patrolPoints.Length == 0)
             return;
 
-        reachedEndOfPath = false;
-        float disttowaypoint;
+        bool search = false;
+        
+        if (agent.reachedEndOfPath && !agent.pathPending && float.IsPositiveInfinity(switchTime)) 
+        {
+            switchTime = Time.time + delay;
+        }
+        
+        if (Time.time >= switchTime) 
+        {
+            index = index + 1;
+            search = true;
+            switchTime = float.PositiveInfinity;
+        }
+
+        index = index % patrolPoints.Length;
+        agent.destination = patrolPoints[index].position;
+
+        if (search) agent.SearchPath();
     }
 }
