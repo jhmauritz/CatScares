@@ -17,13 +17,14 @@ public class Health : MonoBehaviour
     public float invTimer = 0.5f;
 
     public bool isNotInvulnerable;
+    public bool isUsingHealthBar;
 
 
     public virtual void Start()
     {
         
         currHealth = maxHealth;
-        if (!isNotInvulnerable)
+        if (isUsingHealthBar)
         {
             healthbar.SetMaxHealth(currHealth);
             anim = GetComponent<Animator>();
@@ -63,7 +64,7 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("isDamaged");
             currHealth -= damage;
-            //healthbar.SetHealth(currHealth);
+            healthbar.SetHealth(currHealth);
         }
 
         if(currHealth <= 0)

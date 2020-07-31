@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class AIPatrol : MonoBehaviour
+public class AIShoot : MonoBehaviour
 {
     public Transform[] arrayPoints;
 
     public enum States
     {
-        PATROL,
+        IDLE,
         FOLLOW,
         ATTACK
     };
 
-    public States state = States.PATROL;
+    public States state = States.IDLE;
     public Animator anim;
+    public GameObject bullet;
     
     Transform[] patrolPoints;
     public float delay = 0;
@@ -46,13 +47,12 @@ public class AIPatrol : MonoBehaviour
 
     private void Update()
     {
-        
         Flip();
         PlayerCheck();
         
         switch (state)
         {
-            case States.PATROL:
+            case States.IDLE:
                 Patrol();
                 break;
             case States.FOLLOW:
@@ -62,17 +62,19 @@ public class AIPatrol : MonoBehaviour
                 Attack();
                 break;
         }
+
+        Instantiate(bullet);
     }
-    
+
     void Flip()
     {
         if (aiPath.desiredVelocity.x >= 0.01f)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         else if (aiPath.desiredVelocity.x <= -0.01f)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 
@@ -87,7 +89,7 @@ public class AIPatrol : MonoBehaviour
         
         if (followDist > spotRadius)
         {
-            state = States.PATROL;
+            state = States.IDLE;
         }
         
         if (followDist <= attackRadius)
@@ -105,6 +107,11 @@ public class AIPatrol : MonoBehaviour
     void Attack()
     {
         Debug.Log("Attack");
+    }
+
+    void Shoot()
+    {
+        
     }
 
     void Patrol()

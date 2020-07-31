@@ -756,9 +756,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currHealth: 0
+  anim: {fileID: 7763885778374315745}
   healthbar: {fileID: 6345592570311735229}
   invTimer: 0.5
   isNotInvulnerable: 0
+  isUsingHealthBar: 1
 --- !u!114 &7955857444838294103
 MonoBehaviour:
   m_ObjectHideFlags: 0
