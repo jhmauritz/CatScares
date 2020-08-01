@@ -13,6 +13,8 @@ public class BulletBase : MonoBehaviour
     private bool isOffScreen;
     private float isOffScreenTimer;
 
+    public bool isEnemy;
+
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,12 +41,24 @@ public class BulletBase : MonoBehaviour
         isOffScreen = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<EnemyHealth>())
+        if (!isEnemy)
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damageDealer);
-            Destroy(gameObject);
+            if (collision.gameObject.GetComponent<EnemyHealth>())
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damageDealer);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (collision.gameObject.GetComponent<PlayerHealth>())
+            {
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageDealer);
+                Destroy(gameObject);
+            }
         }
     }
 }
+

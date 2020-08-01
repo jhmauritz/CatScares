@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using Pathfinding;
 
-public class AIShoot : MonoBehaviour, IStateMachine
+public class AIDrop : MonoBehaviour, IStateMachine
 {
     public Transform[] arrayPoints;
 
     public enum States
     {
         IDLE,
-        FOLLOW,
-        ATTACK
+        DROP,
+        SWING
     };
 
     public States state = States.IDLE;
@@ -20,6 +21,8 @@ public class AIShoot : MonoBehaviour, IStateMachine
     public GameObject bullet;
     public Transform shootPoint;
     public float fireRate = 1f;
+    public Transform dropPoint;
+    public Transform startPoint;
     
     Transform[] patrolPoints;
     public float delay = 0;
@@ -35,11 +38,11 @@ public class AIShoot : MonoBehaviour, IStateMachine
 
     private bool shoot;
     private float fireRateInner;
+    private bool isDropPoint;
+    private bool isStartPoint;
 
-    private void Awake()
-    {
-        patrolPoints = arrayPoints;
-    }
+    private Vector3 drop;
+    private Vector3 start;
 
     private void Start()
     {
@@ -52,14 +55,40 @@ public class AIShoot : MonoBehaviour, IStateMachine
         InState();
         ExitState();
 
-        if (shoot)
+    }
+
+    private void Swing()
+    {
+        
+    }
+
+    private void Drop()
+    {
+        float speed = 1f;
+
+        if (!isDropPoint)
         {
-            fireRateInner -= Time.deltaTime;
-            if (fireRateInner <= 0)
-            {
-                shoot = false;
-                fireRateInner = fireRate;
-            }
+            transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
+            GetComponentInChildren<TrailRenderer>().time = 50000f;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    private void Watch()
+    {
+        float speed = 1f;
+        
+        if (!isStartPoint)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
+            GetComponentInChildren<TrailRenderer>().time = 1f;
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -75,54 +104,28 @@ public class AIShoot : MonoBehaviour, IStateMachine
         }
     }
 
-    void FollowPLayer()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(player != null)
-            agent.destination = player.position;
-    }
-
-    void Attack()
-    {
-        if (Time.timeScale > 0)
+        if (other.gameObject.CompareTag("DropPoint"))
         {
-            if(!shoot)
-            {
-                StartCoroutine(Shoot());
-                shoot = true;
-            }
+            isDropPoint = true;
+        }
+        if (other.gameObject.CompareTag("StartPoint"))
+        {
+            isStartPoint = true;
         }
     }
 
-    IEnumerator Shoot()
+    private void OnTriggerExit2D(Collider2D other)
     {
-        GameObject bullTemp = Instantiate(bullet, shootPoint.position, Quaternion.identity);
-        yield return new WaitForSeconds(3f);
-        Destroy(bullTemp);
-    }
-
-    void Patrol()
-    {
-        if (patrolPoints.Length == 0)
-            return;
-
-        bool search = false;
-        
-        if (agent.reachedEndOfPath && !agent.pathPending && float.IsPositiveInfinity(switchTime)) 
+        if (other.gameObject.CompareTag("DropPoint"))
         {
-            switchTime = Time.time + delay;
+            isDropPoint = false;
         }
-        
-        if (Time.time >= switchTime) 
+        if (other.gameObject.CompareTag("StartPoint"))
         {
-            index = index + 1;
-            search = true;
-            switchTime = float.PositiveInfinity;
+            isStartPoint = false;
         }
-
-        index = index % patrolPoints.Length;
-        agent.destination = patrolPoints[index].position;
-
-        if (search) agent.SearchPath();
     }
 
     public void EnterState()
@@ -131,8 +134,8 @@ public class AIShoot : MonoBehaviour, IStateMachine
         agent = GetComponent<IAstarAI>();
         player = FindObjectOfType<PlayerHealth>().transform;
         aiPath = GetComponent<AIPath>();
-
-        fireRateInner = fireRate;
+        start = startPoint.position;
+        drop = dropPoint.position;
     }
 
     public void InState()
@@ -140,13 +143,13 @@ public class AIShoot : MonoBehaviour, IStateMachine
         switch (state)
         {
             case States.IDLE:
-                Patrol();
+                Watch();
                 break;
-            case States.FOLLOW:
-                FollowPLayer();
+            case States.DROP:
+                Drop();
                 break;
-            case States.ATTACK:
-                Attack();
+            case States.SWING:
+                Swing();
                 break;
         }
     }
@@ -162,18 +165,18 @@ public class AIShoot : MonoBehaviour, IStateMachine
                 case States.IDLE:
                     if (followDist <= spotRadius)
                     {
-                        state = States.FOLLOW;
+                        state = States.DROP;
                     }
 
                     break;
-                case States.FOLLOW:
+                case States.DROP:
                     if (followDist <= attackRadius)
                     {
-                        state = States.ATTACK;
+                        state = States.SWING;
                     }
 
                     break;
-                case States.ATTACK:
+                case States.SWING:
                     if (followDist > spotRadius)
                     {
                         state = States.IDLE;

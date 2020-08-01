@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class AIPatrol : MonoBehaviour
+public class AIPatrol : MonoBehaviour, IStateMachine
 {
     public Transform[] arrayPoints;
 
@@ -20,15 +20,16 @@ public class AIPatrol : MonoBehaviour
     
     Transform[] patrolPoints;
     public float delay = 0;
-    public float spotRadius;
-    public float attackRadius;
-    
+
     IAstarAI agent;
     private AIPath aiPath;
     float switchTime = float.PositiveInfinity;
     private Seeker seeker;
     private Transform player;
     private int index = 0;
+
+    public float spotRadius;
+    public float attackRadius;
     
 
     private void Awake()
@@ -38,30 +39,15 @@ public class AIPatrol : MonoBehaviour
 
     private void Start()
     {
-        seeker = GetComponent<Seeker>();
-        agent = GetComponent<IAstarAI>();
-        player = GameObject.FindObjectOfType<PlayerHealth>().transform;
-        aiPath = GetComponent<AIPath>();
+        EnterState();
     }
 
     private void Update()
     {
         
         Flip();
-        PlayerCheck();
-        
-        switch (state)
-        {
-            case States.PATROL:
-                Patrol();
-                break;
-            case States.FOLLOW:
-                FollowPLayer();
-                break;
-            case States.ATTACK:
-                Attack();
-                break;
-        }
+        ExitState();
+        InState();
     }
     
     void Flip()
@@ -76,23 +62,60 @@ public class AIPatrol : MonoBehaviour
         }
     }
 
-    void PlayerCheck()
+    public void EnterState()
     {
-        float followDist = Vector2.Distance(transform.position, player.position);
+        seeker = GetComponent<Seeker>();
+        agent = GetComponent<IAstarAI>();
+        player = GameObject.FindObjectOfType<PlayerHealth>().transform;
+        aiPath = GetComponent<AIPath>();
+    }
 
-        if (followDist <= spotRadius)
+    public void InState()
+    {
+        switch (state)
         {
-            state = States.FOLLOW;
+            case States.PATROL:
+                Patrol();
+                break;
+            case States.FOLLOW:
+                FollowPLayer();
+                break;
+            case States.ATTACK:
+                Attack();
+                break;
         }
-        
-        if (followDist > spotRadius)
+    }
+
+    public void ExitState()
+    {
+        if (player != null)
         {
-            state = States.PATROL;
-        }
-        
-        if (followDist <= attackRadius)
-        {
-            state = States.ATTACK;
+            float followDist = Vector2.Distance(transform.position, player.position);
+
+            switch (state)
+            {
+                case States.PATROL:
+                    if (followDist <= spotRadius)
+                    {
+                        state = States.FOLLOW;
+                    }
+
+                    break;
+                case States.FOLLOW:
+                    if (followDist <= attackRadius)
+                    {
+                        state = States.ATTACK;
+                    }
+
+                    break;
+                case States.ATTACK:
+                    if (followDist > spotRadius)
+                    {
+                        state = States.PATROL;
+                    }
+
+                    break;
+            }
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,12 @@ public class WizardBullet : BulletBase
     public override void Start()
     {
         player = FindObjectOfType<PlayerHealth>().transform;
-        
+        if (player != null)
+        {
+            Vector3 dist = (player.position - transform.position).normalized;
 
-        rb.velocity = player.forward * speed * Time.deltaTime;
+
+            rb.velocity = dist * speed;
+        }
     }
 }
