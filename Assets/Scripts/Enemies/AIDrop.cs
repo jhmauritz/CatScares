@@ -18,11 +18,13 @@ public class AIDrop : MonoBehaviour, IStateMachine
 
     public States state = States.IDLE;
     public Animator anim;
+    public Animator stretchAnim;
     public GameObject bullet;
     public Transform shootPoint;
     public float fireRate = 1f;
     public Transform dropPoint;
     public Transform startPoint;
+    public GameObject stretcher;
     
     Transform[] patrolPoints;
     public float delay = 0;
@@ -43,6 +45,7 @@ public class AIDrop : MonoBehaviour, IStateMachine
 
     private Vector3 drop;
     private Vector3 start;
+    private bool fromDrop;
 
     private void Start()
     {
@@ -65,11 +68,15 @@ public class AIDrop : MonoBehaviour, IStateMachine
     private void Drop()
     {
         float speed = 1f;
+        float newScale = transform.position.y;
 
         if (!isDropPoint)
         {
             transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
-            GetComponentInChildren<TrailRenderer>().time = 50000f;
+            stretchAnim.SetBool("IsStretching", true);
+            stretchAnim.SetBool("IsNotStretching", false);
+            
+            fromDrop = true;
         }
         else
         {
@@ -84,7 +91,12 @@ public class AIDrop : MonoBehaviour, IStateMachine
         if (!isStartPoint)
         {
             transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
-            GetComponentInChildren<TrailRenderer>().time = 1f;
+            if (fromDrop)
+            {
+                stretchAnim.SetBool("IsNotStretching", true);
+                stretchAnim.SetBool("IsStretching", false);
+                fromDrop = false;
+            }
         }
         else
         {
