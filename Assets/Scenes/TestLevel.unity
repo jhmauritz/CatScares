@@ -3848,7 +3848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5493829246078032297}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.4, y: 8.52, z: 27.160755}
+  m_LocalPosition: {x: 20.4, y: 8.63, z: 27.160755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5493829244082559568}
@@ -3994,8 +3994,8 @@ MonoBehaviour:
   state: 0
   anim: {fileID: 0}
   stretchAnim: {fileID: 398915009}
-  bullet: {fileID: 0}
-  shootPoint: {fileID: 0}
+  bullet: {fileID: 6578564376776138998, guid: 13427c3fd1dcb6d4ea2dbbb84922e782, type: 3}
+  shootPoint: {fileID: 8159987026219472172}
   fireRate: 1
   dropPoint: {fileID: 1441045482}
   startPoint: {fileID: 1448617470}
@@ -4354,7 +4354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8159987026219472173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49, y: 0, z: 0}
+  m_LocalPosition: {x: -0.66, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5493829246078032298}
