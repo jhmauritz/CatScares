@@ -67,6 +67,7 @@ public class DropperBullet : MonoBehaviour
             if (other.gameObject.GetComponent<PlayerHealth>())
             {
                 other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageDealer);
+                Die();
             }
         }
 

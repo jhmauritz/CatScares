@@ -46,6 +46,9 @@ public class AIDrop : MonoBehaviour, IStateMachine
     private Vector3 drop;
     private Vector3 start;
     private bool fromDrop;
+    private bool isAnimDone;
+    [SerializeField]
+    public AnimationClip stretch;
 
     private void Start()
     {
@@ -62,11 +65,20 @@ public class AIDrop : MonoBehaviour, IStateMachine
 
     private void Swing()
     {
-        
+        isAnimDone = false;
+        fireRateInner -= Time.deltaTime;
+
+        if (fireRateInner <= 0)
+        {
+            fireRateInner = fireRate;
+            Instantiate(bullet, shootPoint.position, Quaternion.identity);
+        }
     }
 
     private void Drop()
     {
+        StartCoroutine(WaitForAnimation(stretch));
+        
         float speed = 1f;
         float newScale = transform.position.y;
 
@@ -82,6 +94,12 @@ public class AIDrop : MonoBehaviour, IStateMachine
         {
             return;
         }
+    }
+
+    private IEnumerator WaitForAnimation(AnimationClip clip)
+    {
+        yield return new WaitForSeconds(stretch.length);
+        isAnimDone = true;
     }
 
     private void Watch()
@@ -146,8 +164,11 @@ public class AIDrop : MonoBehaviour, IStateMachine
         agent = GetComponent<IAstarAI>();
         player = FindObjectOfType<PlayerHealth>().transform;
         aiPath = GetComponent<AIPath>();
+        
         start = startPoint.position;
         drop = dropPoint.position;
+
+        fireRateInner = fireRate;
     }
 
     public void InState()
@@ -182,7 +203,7 @@ public class AIDrop : MonoBehaviour, IStateMachine
 
                     break;
                 case States.DROP:
-                    if (followDist <= attackRadius)
+                    if (followDist <= attackRadius && isAnimDone)
                     {
                         state = States.SWING;
                     }

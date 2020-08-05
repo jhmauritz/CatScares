@@ -7,6 +7,7 @@ public class EnemyHealth : Health
 {
 
     public float damage;
+    public bool dropper;
 
     public override void Start()
     {
@@ -31,6 +32,18 @@ public class EnemyHealth : Health
         if(collision.gameObject.GetComponent<PlayerHealth>())
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
+
+    public override void Die()
+    {
+        if (dropper)
+        {
+            Destroy(GetComponentInParent<DropperParent>().gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
