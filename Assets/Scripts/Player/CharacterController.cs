@@ -16,12 +16,14 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	[HideInInspector]
+	public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	Animator anim;
+	private PlayerMoveMent pm;
 
 	[Header("Events")]
 	[Space]
@@ -38,6 +40,7 @@ public class CharacterController : MonoBehaviour
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		pm = GetComponent<PlayerMoveMent>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -48,7 +51,7 @@ public class CharacterController : MonoBehaviour
 
 	private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.D))
+		/*if(Input.GetKeyDown(KeyCode.D))
 		{
 			anim.SetBool("isWalking", true);
 		}
@@ -61,6 +64,27 @@ public class CharacterController : MonoBehaviour
 			anim.SetBool("isWalking", true);
 		}
 		else if (Input.GetKeyUp(KeyCode.A))
+		{
+			anim.SetBool("isWalking", false);
+		}*/
+		
+		AnimationWorking();
+	}
+
+	void AnimationWorking()
+	{
+		float walkDir = pm.controls.Player.Movement.ReadValue<float>();
+
+		if (walkDir > 0)
+		{
+			anim.SetBool("isWalking", true);
+		}
+
+		else if (walkDir < 0)
+		{
+			anim.SetBool("isWalking", true);
+		}
+		else if (walkDir == 0)
 		{
 			anim.SetBool("isWalking", false);
 		}

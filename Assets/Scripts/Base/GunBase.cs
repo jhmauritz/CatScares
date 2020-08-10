@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
+using UnityEngine.InputSystem;
 
 public class GunBase : MonoBehaviour
 {
@@ -9,7 +12,7 @@ public class GunBase : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] int maxBullet;
     [SerializeField] public float shootTimerMax;
-    
+
     [HideInInspector]
     public float shootTimer;
     [HideInInspector]
@@ -18,14 +21,15 @@ public class GunBase : MonoBehaviour
     bool shoot;
     Animator anim;
     private bool m_FacingRight = true;
-    CharacterController cc;
+    
+    public PlayerMoveMent pm;
 
     public virtual void Start()
     {
+        
         currBullet = maxBullet;
         shootTimer = shootTimerMax;
         anim = GetComponent<Animator>();
-        cc = GetComponentInParent<CharacterController>();
     }
 
     public virtual void Update()
@@ -33,7 +37,7 @@ public class GunBase : MonoBehaviour
 
         if (Time.timeScale > 0)
         {
-            if(Input.GetButton("Fire1") && currBullet >= 0 && !shoot)
+            if(isFiring && currBullet >= 0 && !shoot)
             {
                 StartCoroutine(Shoot());
                 anim.SetBool("isShooting", true);
@@ -50,15 +54,26 @@ public class GunBase : MonoBehaviour
                 }
             }
 
-            if(Input.GetButtonUp("Fire1"))
+            /*if(Input.GetButtonUp("Fire1"))
             {
                 isFiring = false;
                 anim.SetBool("isShooting", false);
-            }
+            }*/
        
         }
     }
 
+    public void ShootPressed()
+    {
+        isFiring = true;
+    }
+
+    public void ShootReleased()
+    {
+        isFiring = false;
+        anim.SetBool("isShooting", false);
+    }
+    
     public virtual IEnumerator Shoot()
     {
         currBullet--;

@@ -1,0 +1,90 @@
+{
+    "name": "Saving",
+    "maps": [
+        {
+            "name": "Saving",
+            "id": "4120c5c6-9b9f-45a2-834e-31a9f7b892ee",
+            "actions": [
+                {
+                    "name": "F2",
+                    "type": "PassThrough",
+                    "id": "30f47257-41d4-4e01-bc7e-b39388cb6b7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "F4",
+                    "type": "PassThrough",
+                    "id": "194d5765-206e-4664-8d6b-f45bd96f453d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "F5",
+                    "type": "Button",
+                    "id": "8f08a23f-e29b-4e27-83e8-01e66e4d8498",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "F",
+                    "type": "Button",
+                    "id": "4d430b17-b72b-4f70-8292-33ba8b3c3e53",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3e4c57c-f606-4e72-b1f6-a381bd2aee92",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "F2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "491c9c05-eeeb-4e70-b794-f8a93776e1ec",
+                    "path": "<Keyboard>/f4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "F4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "479e5cb8-8069-4979-84a6-8b06a739cd94",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "F5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09219c0e-29a9-443e-8c2f-11afbacef96f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "F",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -37,7 +37,7 @@ namespace Lowscope.Saving
 
         // All listeners
         private static List<Saveable> saveables = new List<Saveable>();
-
+        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void CreateInstance()
         {
@@ -106,6 +106,8 @@ namespace Lowscope.Saving
             {
                 var instanceManager = SpawnInstanceManager(scene);
             }
+            
+            //using the input system 
         }
 
         /// <summary>
@@ -627,6 +629,8 @@ namespace Lowscope.Saving
                 saveables[i].ResetState();
             }
         }
+        
+        
 
         /// <summary>
         /// Spawn a prefab that will be tracked & saved for a specific scene.
@@ -904,7 +908,7 @@ namespace Lowscope.Saving
                 {
                     continue;
                 }
-
+                
                 if (Input.GetKeyDown(settings.wipeActiveSceneData))
                 {
                     SaveMaster.WipeSceneData(SceneManager.GetActiveScene().name);
