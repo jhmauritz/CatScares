@@ -22,7 +22,7 @@ public class SetText : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerHealth>())
         {
             tmp.text = interactText;
-            PlayerMoveMent.isPlayerHere = true;
+            PlayerInputs.isPlayerHere = true;
         }
     }
 
@@ -31,7 +31,8 @@ public class SetText : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerHealth>())
         {
             tmp.text = "";
-            PlayerMoveMent.isPlayerHere = false;
+            PlayerInputs.isPlayerHere = false;
+            PlayerInputs.worldUIButtonPressed = false;
         }
     }
 }

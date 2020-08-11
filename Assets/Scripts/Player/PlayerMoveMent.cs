@@ -12,42 +12,20 @@ public class PlayerMoveMent : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject levelMenu;
 
-    CharacterController controller;
-    public InputMaster controls;
+    [HideInInspector]
+    public CharacterController controller;
+
     float horizMove = 0;
-    bool jump;
-    
-    //static variables
-    public static bool isPlayerHere;
-    
+    public static bool jump;
+
     //newInput system
     private Vector2 wasdInput;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        
-        //initializing input system
-        controls = new InputMaster();
     }
-
-    private void Start()
-    {
-        controls.Player.Jump.performed += _ => Jump();
-
-        controls.UIActivateWorld.WorldUI.performed += _ => LevelSelect();
-
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
+    
 
     private void Update()
     {
@@ -60,26 +38,9 @@ public class PlayerMoveMent : MonoBehaviour
         jump = false;
     }
 
-    void Jump()
-    {
-        if (controller.m_Grounded)
-        {
-            jump = true;
-        }
-        
-    }
-
     void PlayerInput()
     {
         //read movement value
-        horizMove = controls.Player.Movement.ReadValue<float>();
-    }
-
-    public void LevelSelect()
-    {
-        if (isPlayerHere)
-        {
-            levelMenu.SetActive(true);
-        }
+        horizMove = PlayerInputs.inputs.Player.Movement.ReadValue<float>();
     }
 }

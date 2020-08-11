@@ -17,9 +17,9 @@ public class GunBase : MonoBehaviour
     public float shootTimer;
     [HideInInspector]
     public float currBullet;
-    bool isFiring;
+    public bool isFiring;
     bool shoot;
-    Animator anim;
+    public Animator anim;
     private bool m_FacingRight = true;
     
     public PlayerMoveMent pm;
@@ -63,17 +63,6 @@ public class GunBase : MonoBehaviour
         }
     }
 
-    public void ShootPressed()
-    {
-        isFiring = true;
-    }
-
-    public void ShootReleased()
-    {
-        isFiring = false;
-        anim.SetBool("isShooting", false);
-    }
-    
     public virtual IEnumerator Shoot()
     {
         currBullet--;

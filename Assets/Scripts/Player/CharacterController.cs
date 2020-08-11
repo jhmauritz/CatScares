@@ -73,7 +73,7 @@ public class CharacterController : MonoBehaviour
 
 	void AnimationWorking()
 	{
-		float walkDir = pm.controls.Player.Movement.ReadValue<float>();
+		float walkDir = PlayerInputs.inputs.Player.Movement.ReadValue<float>();
 
 		if (walkDir > 0)
 		{

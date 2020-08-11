@@ -175,6 +175,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ExitAllUi"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""089f06eb-cf59-4e27-93ae-38c478d9b66f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -186,6 +194,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""WorldUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28912381-30cf-4763-b1ea-6ac04b595b81"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ExitAllUi"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -220,6 +239,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // UIActivateWorld
         m_UIActivateWorld = asset.FindActionMap("UIActivateWorld", throwIfNotFound: true);
         m_UIActivateWorld_WorldUI = m_UIActivateWorld.FindAction("WorldUI", throwIfNotFound: true);
+        m_UIActivateWorld_ExitAllUi = m_UIActivateWorld.FindAction("ExitAllUi", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -327,11 +347,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_UIActivateWorld;
     private IUIActivateWorldActions m_UIActivateWorldActionsCallbackInterface;
     private readonly InputAction m_UIActivateWorld_WorldUI;
+    private readonly InputAction m_UIActivateWorld_ExitAllUi;
     public struct UIActivateWorldActions
     {
         private @InputMaster m_Wrapper;
         public UIActivateWorldActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @WorldUI => m_Wrapper.m_UIActivateWorld_WorldUI;
+        public InputAction @ExitAllUi => m_Wrapper.m_UIActivateWorld_ExitAllUi;
         public InputActionMap Get() { return m_Wrapper.m_UIActivateWorld; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +366,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @WorldUI.started -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnWorldUI;
                 @WorldUI.performed -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnWorldUI;
                 @WorldUI.canceled -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnWorldUI;
+                @ExitAllUi.started -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnExitAllUi;
+                @ExitAllUi.performed -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnExitAllUi;
+                @ExitAllUi.canceled -= m_Wrapper.m_UIActivateWorldActionsCallbackInterface.OnExitAllUi;
             }
             m_Wrapper.m_UIActivateWorldActionsCallbackInterface = instance;
             if (instance != null)
@@ -351,6 +376,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @WorldUI.started += instance.OnWorldUI;
                 @WorldUI.performed += instance.OnWorldUI;
                 @WorldUI.canceled += instance.OnWorldUI;
+                @ExitAllUi.started += instance.OnExitAllUi;
+                @ExitAllUi.performed += instance.OnExitAllUi;
+                @ExitAllUi.canceled += instance.OnExitAllUi;
             }
         }
     }
@@ -374,5 +402,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IUIActivateWorldActions
     {
         void OnWorldUI(InputAction.CallbackContext context);
+        void OnExitAllUi(InputAction.CallbackContext context);
     }
 }
