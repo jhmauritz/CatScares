@@ -19,6 +19,7 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    //pause the same way the level select works instead of how it is now
     public void ExitPausing()
     {
         PlayerInputs.isExitPause = false;
@@ -36,6 +37,13 @@ public class PauseController : MonoBehaviour
             if (levelSelectMenu != null)
             {
                 levelSelectMenu.SetActive(true);
+            }
+        }
+        else if (!PlayerInputs.worldUIButtonPressed)
+        {
+            if (levelSelectMenu != null)
+            {
+                levelSelectMenu.SetActive(false);
             }
         }
     }

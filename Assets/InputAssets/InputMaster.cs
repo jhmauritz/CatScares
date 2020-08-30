@@ -174,7 +174,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""id"": ""19c5a075-ebc9-471a-8d78-40a8dfe4fc5a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""ExitAllUi"",
@@ -182,7 +182,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""id"": ""089f06eb-cf59-4e27-93ae-38c478d9b66f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [

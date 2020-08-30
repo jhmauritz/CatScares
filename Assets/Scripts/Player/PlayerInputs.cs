@@ -62,7 +62,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if (isPlayerHere)
         {
-            worldUIButtonPressed = true;
+            worldUIButtonPressed = !worldUIButtonPressed;
         }
     }
     
