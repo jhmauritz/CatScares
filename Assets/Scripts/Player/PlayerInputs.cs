@@ -9,7 +9,7 @@ public class PlayerInputs : MonoBehaviour
 
     public static bool isPlayerHere;
     public static bool worldUIButtonPressed;
-    public static bool isExitPause;
+    public static bool isPaused;
 
     private PlayerMoveMent pm;
     private BasicGun bg;
@@ -35,7 +35,7 @@ public class PlayerInputs : MonoBehaviour
         //ui inputs
         inputs.UIActivateWorld.WorldUI.performed += _ => LevelSelect();
         
-        inputs.UIActivateWorld.ExitAllUi.performed += _ => ExitAllPauseUI();
+        inputs.UIActivateWorld.ExitAllUi.performed += _ => PauseUI();
 
     }
     
@@ -77,8 +77,8 @@ public class PlayerInputs : MonoBehaviour
         bg.anim.SetBool("isShooting", false);
     }
 
-    private void ExitAllPauseUI()
+    private void PauseUI()
     {
-        isExitPause = true;
+        isPaused = !isPaused;
     }
 }
