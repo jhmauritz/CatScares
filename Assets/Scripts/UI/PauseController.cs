@@ -22,7 +22,7 @@ public class PauseController : MonoBehaviour
     //pause the same way the level select works instead of how it is now
     public void Pausing()
     {
-        if (PlayerInputs.isPaused && pauseMenu != null)
+        if (PlayerInputs.isPaused && !levelSelectMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(true);
             levelSelectMenu.SetActive(false);
@@ -45,25 +45,19 @@ public class PauseController : MonoBehaviour
 
     public void ActivateLevelSelect()
     {
-        if (PlayerInputs.worldUIButtonPressed)
+        if (PlayerInputs.worldUIButtonPressed && !pauseMenu.activeInHierarchy)
         {
-            if (levelSelectMenu != null)
-            {
-                levelSelectMenu.SetActive(true);
+            levelSelectMenu.SetActive(true);
                 
-                isForMenu = true;
-                Freeze();
-            }
+            isForMenu = true;
+            Freeze();
         }
         else if (!PlayerInputs.worldUIButtonPressed)
         {
-            if (levelSelectMenu != null)
-            {
-                UnFreeze();
-                isForMenu = false;
+            UnFreeze();
+            isForMenu = false;
                 
-                levelSelectMenu.SetActive(false);
-            }
+            levelSelectMenu.SetActive(false);
         }
     }
 
@@ -73,7 +67,8 @@ public class PauseController : MonoBehaviour
 
         if (isForMenu)
         {
-            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
@@ -83,7 +78,8 @@ public class PauseController : MonoBehaviour
         
         if (isForMenu)
         {
-            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

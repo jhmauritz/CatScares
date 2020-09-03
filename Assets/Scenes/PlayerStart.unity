@@ -1880,6 +1880,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2034837050836130763, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2565121860743030961, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: m_IsActive
@@ -2005,5 +2010,6 @@ PrefabInstance:
       propertyPath: sceneName
       value: PlayerStart
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3867082971514120288, guid: 86879c1725dd8444ebd6324b55e1965b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 86879c1725dd8444ebd6324b55e1965b, type: 3}
