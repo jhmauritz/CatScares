@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMoveMent : MonoBehaviour
 {
+    public static int levelsCompleted;
+    
     public float runSpeed;
 
     public GameObject pauseMenu;
