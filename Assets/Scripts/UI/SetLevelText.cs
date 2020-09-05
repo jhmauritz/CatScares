@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SetLevelText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private TextMeshProUGUI levelText;
+    
+    private void Start()
     {
-        
+        levelText = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        levelText.text = LevelSelectScript.loadLevelName;
     }
 }

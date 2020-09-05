@@ -1,18 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DescriptionRef : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string fearName;
 
-    // Update is called once per frame
-    void Update()
+    public void SelecetFearButton()
     {
-        
+        LevelSelectScript.loadLevelName = fearName;
     }
 }

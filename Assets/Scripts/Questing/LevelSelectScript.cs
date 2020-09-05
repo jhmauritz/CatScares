@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelSelectScript : MonoBehaviour
 {
+    public static string loadLevelName;
+    
     private int levelSelectInteger;
 
     [Header("LevelSelectButtons")] 

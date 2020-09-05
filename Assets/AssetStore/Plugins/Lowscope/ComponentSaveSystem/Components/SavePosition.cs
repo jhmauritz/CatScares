@@ -13,11 +13,13 @@ namespace Lowscope.Saving.Components
     public class SavePosition : MonoBehaviour, ISaveable
     {
         Vector3 lastPosition;
+        private int completedLevels;
 
         [Serializable]
         public struct SaveData
         {
             public Vector3 position;
+            public int levels;
         }
 
         private void Start()
@@ -38,19 +40,23 @@ namespace Lowscope.Saving.Components
         public void OnLoad(string data)
         {
             var pos = JsonUtility.FromJson<SaveData>(data).position;
+            var level = JsonUtility.FromJson<SaveData>(data).levels;
             transform.position = pos;
             lastPosition = pos;
+            PlayerMoveMent.levelsCompleted = level;
+            completedLevels = level;
         }
 
         public string OnSave()
         {
             lastPosition = transform.position;
-            return JsonUtility.ToJson(new SaveData { position = lastPosition });
+            completedLevels = PlayerMoveMent.levelsCompleted;
+            return JsonUtility.ToJson(new SaveData { position = lastPosition, levels = completedLevels});
         }
 
         public bool OnSaveCondition()
         {
-            return lastPosition != transform.position;
+            return lastPosition != transform.position || completedLevels != PlayerMoveMent.levelsCompleted;
         }
     }
 }
