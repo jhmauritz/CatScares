@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - DropPoint
   - StartPoint
+  - DiaTitle
+  - DiaDescription
+  - DiaPanel
   layers:
   - Default
   - TransparentFX
