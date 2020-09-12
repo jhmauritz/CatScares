@@ -49,6 +49,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f8b736c3-635a-43fe-9014-d1fbe6ca407b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -161,6 +169,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""UnShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a7f8fe2-277a-4e51-a8a4-d49219cf52a6"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -236,6 +255,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_UnShoot = m_Player.FindAction("UnShoot", throwIfNotFound: true);
+        m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         // UIActivateWorld
         m_UIActivateWorld = asset.FindActionMap("UIActivateWorld", throwIfNotFound: true);
         m_UIActivateWorld_WorldUI = m_UIActivateWorld.FindAction("WorldUI", throwIfNotFound: true);
@@ -293,6 +313,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_UnShoot;
+    private readonly InputAction m_Player_MousePosition;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -301,6 +322,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @UnShoot => m_Wrapper.m_Player_UnShoot;
+        public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -322,6 +344,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @UnShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnShoot;
                 @UnShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnShoot;
                 @UnShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnShoot;
+                @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -338,6 +363,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @UnShoot.started += instance.OnUnShoot;
                 @UnShoot.performed += instance.OnUnShoot;
                 @UnShoot.canceled += instance.OnUnShoot;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -398,6 +426,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnUnShoot(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
     public interface IUIActivateWorldActions
     {

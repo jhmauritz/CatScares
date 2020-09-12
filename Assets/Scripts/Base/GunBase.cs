@@ -21,20 +21,27 @@ public class GunBase : MonoBehaviour
     bool shoot;
     public Animator anim;
     private bool m_FacingRight = true;
+
+    private Transform crossHair;
     
     public PlayerMoveMent pm;
 
+    private Camera main;
+
     public virtual void Start()
     {
-        
+        crossHair = GameObject.FindGameObjectWithTag("CrossHair").transform;
         currBullet = maxBullet;
         shootTimer = shootTimerMax;
         anim = GetComponent<Animator>();
+        
+        main = Camera.main;
     }
 
     public virtual void Update()
     {
-
+        CrossHairAim();
+        
         if (Time.timeScale > 0)
         {
             if(isFiring && currBullet >= 0 && !shoot)
@@ -61,6 +68,18 @@ public class GunBase : MonoBehaviour
             }*/
        
         }
+    }
+
+    private void CrossHairAim()
+    {
+        Vector2 mouseScreenPos = PlayerInputs.inputs.Player.MousePosition.ReadValue<Vector2>();
+        Vector3 mouseWorldPos = main.ScreenToWorldPoint(mouseScreenPos);
+
+        Vector3 targetDir = mouseWorldPos - transform.position;
+        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+
+       // crossHair.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0f);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
     public virtual IEnumerator Shoot()

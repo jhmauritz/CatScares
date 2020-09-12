@@ -1178,7 +1178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -618, y: 25.7}
+  m_AnchoredPosition: {x: -618, y: 25.699951}
   m_SizeDelta: {x: 578.5829, y: 339.61755}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1593250987
@@ -2493,6 +2493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147532080043775527, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_TagString
+      value: CrossHair
       objectReference: {fileID: 0}
     - target: {fileID: 5349804722040654369, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}

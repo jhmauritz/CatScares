@@ -11,6 +11,7 @@ TagManager:
   - DiaTitle
   - DiaDescription
   - DiaPanel
+  - CrossHair
   layers:
   - Default
   - TransparentFX

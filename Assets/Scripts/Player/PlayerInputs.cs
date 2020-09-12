@@ -36,9 +36,8 @@ public class PlayerInputs : MonoBehaviour
         inputs.UIActivateWorld.WorldUI.performed += _ => LevelSelect();
         
         inputs.UIActivateWorld.ExitAllUi.performed += _ => PauseUI();
-
     }
-    
+
     private void OnEnable()
     {
         inputs.Enable();
@@ -55,7 +54,6 @@ public class PlayerInputs : MonoBehaviour
         {
             PlayerMoveMent.jump = true;
         }
-        
     }
     
     private void LevelSelect()
