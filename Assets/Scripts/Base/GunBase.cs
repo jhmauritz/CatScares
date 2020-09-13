@@ -60,25 +60,19 @@ public class GunBase : MonoBehaviour
                     shoot = false;
                 }
             }
-
-            /*if(Input.GetButtonUp("Fire1"))
-            {
-                isFiring = false;
-                anim.SetBool("isShooting", false);
-            }*/
-       
         }
     }
 
     private void CrossHairAim()
     {
-        Vector2 mouseScreenPos = PlayerInputs.inputs.Player.MousePosition.ReadValue<Vector2>();
-        Vector3 mouseWorldPos = main.ScreenToWorldPoint(mouseScreenPos);
+        Vector3 target = crossHair.position;
+        target.z = 0f;
 
-        Vector3 targetDir = mouseWorldPos - transform.position;
-        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+        Vector3 objectPos = transform.position;
+        target.x = target.x - objectPos.x;
+        target.y = target.y - objectPos.y;
 
-       // crossHair.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0f);
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 

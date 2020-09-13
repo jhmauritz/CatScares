@@ -36,6 +36,9 @@ public class PlayerInputs : MonoBehaviour
         inputs.UIActivateWorld.WorldUI.performed += _ => LevelSelect();
         
         inputs.UIActivateWorld.ExitAllUi.performed += _ => PauseUI();
+        
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
     }
 
     private void OnEnable()

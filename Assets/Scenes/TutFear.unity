@@ -741,8 +741,8 @@ MonoBehaviour:
   m_LookaheadTime: 1
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
-  m_XDamping: 2
-  m_YDamping: 2
+  m_XDamping: 0
+  m_YDamping: 0
   m_ZDamping: 0
   m_TargetMovementOnly: 0
   m_ScreenX: 0.5
@@ -2464,6 +2464,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 760527992457176927, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: dinstance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 760527992457176927, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: followSharpness
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 988067204361157137, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2533,6 +2543,26 @@ PrefabInstance:
         type: 3}
       propertyPath: saveable.health
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763885778374315748, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_SleepingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763885778374315748, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763885778374315749, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763885778374315751, guid: 86879c1725dd8444ebd6324b55e1965b,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7763885778374315753, guid: 86879c1725dd8444ebd6324b55e1965b,
         type: 3}

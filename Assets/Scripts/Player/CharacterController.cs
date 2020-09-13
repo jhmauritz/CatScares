@@ -20,10 +20,11 @@ public class CharacterController : MonoBehaviour
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
-	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	public static bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	Animator anim;
 	private PlayerMoveMent pm;
+	private Transform crossHair;
 
 	[Header("Events")]
 	[Space]
@@ -41,6 +42,7 @@ public class CharacterController : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
 		pm = GetComponent<PlayerMoveMent>();
+		crossHair = GameObject.FindGameObjectWithTag("CrossHair").transform;
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -189,6 +191,7 @@ public class CharacterController : MonoBehaviour
 		m_FacingRight = !m_FacingRight;
 
 		transform.Rotate(0f, 180f, 0f);
+		
 	}
 
 }

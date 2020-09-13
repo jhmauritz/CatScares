@@ -78,7 +78,7 @@ public class PauseController : MonoBehaviour
         
         if (isForMenu)
         {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
     }
