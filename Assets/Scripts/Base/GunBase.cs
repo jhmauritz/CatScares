@@ -30,6 +30,7 @@ public class GunBase : MonoBehaviour
 
     public virtual void Start()
     {
+        pm = FindObjectOfType<PlayerMoveMent>();
         crossHair = GameObject.FindGameObjectWithTag("CrossHair").transform;
         currBullet = maxBullet;
         shootTimer = shootTimerMax;
@@ -60,6 +61,21 @@ public class GunBase : MonoBehaviour
                     shoot = false;
                 }
             }
+        }
+        
+        //check which way gun is facing
+        
+        // TRANSFER MOUSE POSITION FROM OLD INPUT SYSTEM TO NEW INPUT SYETM
+        
+        if (pm.transform.InverseTransformPoint(Input.mousePosition).x - pm.transform.localPosition.x > 0 && m_FacingRight)
+        {
+            Flip();
+        }
+        else if (pm.transform.InverseTransformPoint(Input.mousePosition).x - pm.transform.localPosition.x < 0 &&
+                 !m_FacingRight)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            Flip();
         }
     }
 
