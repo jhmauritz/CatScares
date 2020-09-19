@@ -67,15 +67,15 @@ public class GunBase : MonoBehaviour
         
         // TRANSFER MOUSE POSITION FROM OLD INPUT SYSTEM TO NEW INPUT SYETM
         
-        if (pm.transform.InverseTransformPoint(Input.mousePosition).x - pm.transform.localPosition.x > 0 && m_FacingRight)
+        var viewPortCoord = main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+        if (viewPortCoord.x >= 0)
         {
-            Flip();
+            transform.localScale = new Vector3(1,1,1);
         }
-        else if (pm.transform.InverseTransformPoint(Input.mousePosition).x - pm.transform.localPosition.x < 0 &&
-                 !m_FacingRight)
+        else if (viewPortCoord.x < 0)
         {
-            transform.Rotate(0f, 180f, 0f);
-            Flip();
+            transform.localScale = new Vector3(1,-1,-1);
         }
     }
 
@@ -98,13 +98,5 @@ public class GunBase : MonoBehaviour
         GameObject bulletTemp = Instantiate(bulletObject, firePoint.position, firePoint.rotation);
         yield return new WaitForSeconds(3f);
         Destroy(bulletTemp);
-    }
-
-    private void Flip()
-    {
-        // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
-
-        transform.Rotate(0f, 180f, 0f);
     }
 }

@@ -27,7 +27,7 @@ public class PlayerInputs : MonoBehaviour
     {
         //player inputs
         inputs.Player.Jump.performed += _ => Jump();
-
+        
         inputs.Player.Shoot.performed += _ => ShootPressed();
 
         inputs.Player.UnShoot.performed += _ => ShootReleased();
@@ -37,8 +37,8 @@ public class PlayerInputs : MonoBehaviour
         
         inputs.UIActivateWorld.ExitAllUi.performed += _ => PauseUI();
         
-        //Cursor.lockState = CursorLockMode.Confined;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
