@@ -24,7 +24,7 @@ public class ParalaxBackgroundMovement : MonoBehaviour
 
     private void MovingBackground()
     {
-        float horizMove = PlayerInputs.inputs.Player.Movement.ReadValue<float>()
+        float horizMove = PlayerInputs.inputs.Player.Movement.ReadValue<float>();
         dirX = horizMove * bagroundMoveSpeed * Time.deltaTime;
 
         transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
