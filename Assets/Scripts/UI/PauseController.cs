@@ -11,7 +11,15 @@ public class PauseController : MonoBehaviour
     public GameObject pauseMenu;
 
     private static bool isForMenu;
+    private static GameObject ch;
+
+    public static bool isPausedMenu;
     
+    void Start()
+    {
+        ch = GameObject.FindGameObjectWithTag("CrossHair");
+    }
+
     private void Update()
     {
         ActivateLevelSelect();
@@ -69,6 +77,9 @@ public class PauseController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            ch.GetComponent<Crosshair>().enabled = false;
+            isPausedMenu = true;
         }
     }
 
@@ -80,6 +91,9 @@ public class PauseController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
+
+            ch.GetComponent<Crosshair>().enabled = true;
+            isPausedMenu = false;
         }
     }
 

@@ -8,7 +8,7 @@ public class ParalaxBackgroundMovement : MonoBehaviour
     private Camera camera;
 
     [SerializeField] private float bagroundMoveSpeed;
-    [SerializeField] private float dirX;
+    private float dirX;
     [SerializeField] private float offsetByX = 13f;
 
     void Awake()
@@ -19,7 +19,14 @@ public class ParalaxBackgroundMovement : MonoBehaviour
 
     void Update()
     {
-        MovingBackground();
+        if(PlayerMoveMent.isMoving)
+        {
+            MovingBackground();
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void MovingBackground()
@@ -30,14 +37,13 @@ public class ParalaxBackgroundMovement : MonoBehaviour
         transform.position = new Vector2(transform.position.x + dirX, transform.position.y);
 
         if(transform.position.x - mainCamera.position.x < -offsetByX)
-        {
-            transform.position = new Vector2(mainCamera.position.x + offsetByX, transform.position.y);
-        }
-        else if(transform.position.x - mainCamera.position.x > offsetByX)
-        {
-            transform.position = new Vector2(mainCamera.position.x - offsetByX, transform.position.y);
-        }
-
+            {
+                transform.position = new Vector2(mainCamera.position.x + offsetByX, transform.position.y);
+            }
+            else if(transform.position.x - mainCamera.position.x > offsetByX)
+            {
+                transform.position = new Vector2(mainCamera.position.x - offsetByX, transform.position.y);
+            }
     }
 
 }

@@ -41,7 +41,14 @@ public class GunBase : MonoBehaviour
 
     public virtual void Update()
     {
-        CrossHairAim();
+        if(!PauseController.isPausedMenu)
+        {
+            CrossHairAim();
+        }
+        else 
+        {
+            return;
+        }
         
         if (Time.timeScale > 0)
         {

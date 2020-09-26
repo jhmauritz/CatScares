@@ -11,6 +11,8 @@ public class PlayerMoveMent : MonoBehaviour
     
     public float runSpeed;
 
+    public static bool isMoving;
+
     public GameObject pauseMenu;
     public GameObject levelMenu;
 
@@ -22,16 +24,28 @@ public class PlayerMoveMent : MonoBehaviour
 
     //newInput system
     private Vector2 wasdInput;
+    private Rigidbody2D rigidbody;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
     
 
     private void Update()
     {
         PlayerInput();
+
+Debug.LogError(isMoving);
+        if(rigidbody.velocity.magnitude > 0 || rigidbody.velocity.magnitude < 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 
     private void FixedUpdate()
