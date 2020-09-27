@@ -33,10 +33,12 @@ public class AIDrop : MonoBehaviour, IStateMachine
     
     IAstarAI agent;
     private AIPath aiPath;
-    float switchTime = float.PositiveInfinity;
+    [HideInInspector]
+    public float switchTime = float.PositiveInfinity;
     private Seeker seeker;
     private Transform player;
-    private int index = 0;
+    [HideInInspector]
+    public int index = 0;
 
     private bool shoot;
     private float fireRateInner;

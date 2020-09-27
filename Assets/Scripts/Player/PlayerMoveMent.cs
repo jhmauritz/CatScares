@@ -24,12 +24,12 @@ public class PlayerMoveMent : MonoBehaviour
 
     //newInput system
     private Vector2 wasdInput;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
     
 
@@ -37,8 +37,7 @@ public class PlayerMoveMent : MonoBehaviour
     {
         PlayerInput();
 
-Debug.LogError(isMoving);
-        if(rigidbody.velocity.magnitude > 0 || rigidbody.velocity.magnitude < 0)
+        if(rb.velocity.magnitude > 0 || rb.velocity.magnitude < 0)
         {
             isMoving = true;
         }

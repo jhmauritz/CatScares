@@ -9,8 +9,8 @@ using UnityEngine.InputSystem;
 public class GunBase : MonoBehaviour
 {
     [SerializeField] public GameObject bulletObject;
-    [SerializeField] Transform firePoint;
-    [SerializeField] int maxBullet;
+    [SerializeField] public Transform firePoint;
+    [SerializeField] private int maxBullet = 0;
     [SerializeField] public float shootTimerMax;
 
     [HideInInspector]
@@ -20,7 +20,8 @@ public class GunBase : MonoBehaviour
     public bool isFiring;
     bool shoot;
     public Animator anim;
-    private bool m_FacingRight = true;
+    [HideInInspector]
+    public bool m_FacingRight = true;
 
     private Transform crossHair;
     

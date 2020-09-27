@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
+[DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class ParalaxBackgroundMovement : MonoBehaviour
 {
     private Transform mainCamera;
-    private Camera camera;
+    private Camera cam;
 
-    [SerializeField] private float bagroundMoveSpeed;
+    [SerializeField] private float bagroundMoveSpeed = 0f;
     private float dirX;
     [SerializeField] private float offsetByX = 13f;
-
+    
     void Awake()
     {
-        camera = Camera.main;
-        mainCamera = camera.transform;
+        cam = Camera.main;
+        mainCamera = cam.transform;
     }
 
     void Update()
@@ -46,4 +48,8 @@ public class ParalaxBackgroundMovement : MonoBehaviour
             }
     }
 
+    private string GetDebuggerDisplay()
+    {
+        return ToString();
+    }
 }

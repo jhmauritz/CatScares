@@ -11,9 +11,9 @@ public class DialougeTrigger : MonoBehaviour
     private TextMeshProUGUI diaTitle;
     private TextMeshProUGUI diaDescription;
     
-    [SerializeField] private string dialougeTitle;
-    [SerializeField] private string dialougeDescription;
-    [SerializeField] private Color invisibleColor;
+    [SerializeField] private string dialougeTitle = null;
+    [SerializeField] private string dialougeDescription = null;
+    [SerializeField] public Color invisibleColor;
     private Color visibleColorPanel;
     private Color visibleColorTitle;
     private Color visibleColorDescription;

@@ -42,7 +42,7 @@ public class DropperBullet : MonoBehaviour
                 }
             }
 
-            if (isSpawned = true)
+            if (isSpawned == true)
             {
                 deathTimer -= Time.deltaTime;
                 if (deathTimer <= 0)
