@@ -12,6 +12,7 @@ TagManager:
   - DiaDescription
   - DiaPanel
   - CrossHair
+  - DoorTrap
   layers:
   - Default
   - TransparentFX
