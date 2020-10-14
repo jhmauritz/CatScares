@@ -59,6 +59,11 @@ public class BulletBase : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if(!collision.gameObject.GetComponent<PlayerHealth>())
+        {
+            Destroy(gameObject);
+        }
     }
 }
 
