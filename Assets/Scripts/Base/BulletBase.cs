@@ -43,6 +43,9 @@ public class BulletBase : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+
+        Debug.Log(collision);
+
         if (!isEnemy)
         {
             if (collision.gameObject.GetComponent<EnemyHealth>())
@@ -60,10 +63,16 @@ public class BulletBase : MonoBehaviour
             }
         }
 
-        if(!collision.gameObject.GetComponent<PlayerHealth>())
+        if(collision.gameObject.GetComponent<PlayerHealth>())
+        {
+            return;
+        }
+        
+        else if(!collision.gameObject.GetComponent<PlayerHealth>())
         {
             Destroy(gameObject);
         }
+
     }
 }
 

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMoveMent : MonoBehaviour
 {
+    public static int checkpointIndexCompleted;
     public static int levelsCompleted;
     
     public float runSpeed;
@@ -35,6 +36,8 @@ public class PlayerMoveMent : MonoBehaviour
 
     private void Update()
     {
+
+        Debug.LogError(checkpointIndexCompleted);
         PlayerInput();
 
         if(rb.velocity.magnitude > 0 || rb.velocity.magnitude < 0)

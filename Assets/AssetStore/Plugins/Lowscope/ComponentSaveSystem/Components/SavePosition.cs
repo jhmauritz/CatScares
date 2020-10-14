@@ -15,11 +15,15 @@ namespace Lowscope.Saving.Components
         Vector3 lastPosition;
         private int completedLevels;
 
+        private int checkpointIndex;
+
         [Serializable]
         public struct SaveData
         {
             public Vector3 position;
             public int levels;
+
+            public int index;
         }
 
         private void Start()
@@ -41,22 +45,29 @@ namespace Lowscope.Saving.Components
         {
             var pos = JsonUtility.FromJson<SaveData>(data).position;
             var level = JsonUtility.FromJson<SaveData>(data).levels;
+            var index = JsonUtility.FromJson<SaveData>(data).levels;
+
             transform.position = pos;
             lastPosition = pos;
+
             PlayerMoveMent.levelsCompleted = level;
             completedLevels = level;
+
+            PlayerMoveMent.checkpointIndexCompleted = index;
+            checkpointIndex = index;
         }
 
         public string OnSave()
         {
             lastPosition = transform.position;
             completedLevels = PlayerMoveMent.levelsCompleted;
-            return JsonUtility.ToJson(new SaveData { position = lastPosition, levels = completedLevels});
+            checkpointIndex = PlayerMoveMent.checkpointIndexCompleted;
+            return JsonUtility.ToJson(new SaveData { position = lastPosition, levels = completedLevels, index = checkpointIndex});
         }
 
         public bool OnSaveCondition()
         {
-            return lastPosition != transform.position || completedLevels != PlayerMoveMent.levelsCompleted;
+            return lastPosition != transform.position || completedLevels != PlayerMoveMent.levelsCompleted || checkpointIndex != PlayerMoveMent.checkpointIndexCompleted;
         }
     }
 }
