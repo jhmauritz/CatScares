@@ -43,36 +43,45 @@ public class BulletBase : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
-        Debug.Log(collision);
-
-        if (!isEnemy)
+        if(isEnemy)
         {
-            if (collision.gameObject.GetComponent<EnemyHealth>())
-            {
-                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damageDealer);
-                Destroy(gameObject);
-            }
+            EnemyCollision(collision);
         }
-        else
+        else if(!isEnemy)
         {
-            if (collision.gameObject.GetComponent<PlayerHealth>())
+            RegularCollision(collision);
+        }
+    }
+
+    void EnemyCollision(Collider2D collision)
+    {
+        if(collision.gameObject.GetComponent<EnemyHealth>())
+                {
+                    return;
+                }
+        else if (collision.gameObject.GetComponent<PlayerHealth>())
             {
                 collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageDealer);
                 Destroy(gameObject);
             }
-        }
 
-        if(collision.gameObject.GetComponent<PlayerHealth>())
+    }
+
+    void RegularCollision(Collider2D collision)
+    {
+        if(collision.gameObject.GetComponent<PlayerHealth>() || collision.CompareTag("CheckPoint"))
         {
             return;
         }
-        
-        else if(!collision.gameObject.GetComponent<PlayerHealth>())
+        else if (collision.gameObject.GetComponent<EnemyHealth>())
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damageDealer);
+                Destroy(gameObject);
+            }
+        else if(!collision.gameObject.GetComponent<PlayerHealth>() || collision.CompareTag("CheckPoint"))
         {
             Destroy(gameObject);
         }
-
     }
 }
 

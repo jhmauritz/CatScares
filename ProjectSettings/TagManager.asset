@@ -13,6 +13,7 @@ TagManager:
   - DiaPanel
   - CrossHair
   - DoorTrap
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

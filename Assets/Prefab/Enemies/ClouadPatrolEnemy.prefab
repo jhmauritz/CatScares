@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 6122569969739076671}
   - component: {fileID: 6122569969739076670}
   - component: {fileID: 6544379725891012214}
+  - component: {fileID: 972578514850675955}
   m_Layer: 0
   m_Name: ClouadPatrolEnemy
   m_TagString: Untagged
@@ -511,6 +512,7 @@ MonoBehaviour:
   isNotInvulnerable: 1
   isUsingHealthBar: 1
   damage: 5
+  dropper: 0
 --- !u!114 &6122569969739076671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +597,19 @@ MonoBehaviour:
   delay: 0
   spotRadius: 3
   attackRadius: 0
+--- !u!114 &972578514850675955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122569969739076665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9e8fe6f98347645a7ecfc49d2ba6da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectIndexAt: 2
 --- !u!1 &7552334852224855967
 GameObject:
   m_ObjectHideFlags: 0
