@@ -15,5 +15,10 @@ public class SaveButton : MonoBehaviour
             SaveMaster.WriteActiveSaveToDisk();
             Debug.Log("Saved");
         }*/
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            SaveMaster.DeleteSave(0);
+        }
     }
 }

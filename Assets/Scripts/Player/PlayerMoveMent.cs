@@ -36,8 +36,6 @@ public class PlayerMoveMent : MonoBehaviour
 
     private void Update()
     {
-
-        Debug.LogError(checkpointIndexCompleted);
         PlayerInput();
 
         if(rb.velocity.magnitude > 0 || rb.velocity.magnitude < 0)
