@@ -9,6 +9,7 @@ public class PlayerMoveMent : MonoBehaviour
 {
     public static int checkpointIndexCompleted;
     public static int levelsCompleted;
+    public static int isFirstPlayerHubEncounter = 0;
     
     public float runSpeed;
 

@@ -14,16 +14,16 @@ namespace Lowscope.Saving.Components
     {
         Vector3 lastPosition;
         private int completedLevels;
-
         private int checkpointIndex;
+        private int isFirstPlayerHubEncounter;
 
         [Serializable]
         public struct SaveData
         {
             public Vector3 position;
             public int levels;
-
             public int index;
+            public int firstHubEncounter;
         }
 
         private void Start()
@@ -46,6 +46,7 @@ namespace Lowscope.Saving.Components
             var pos = JsonUtility.FromJson<SaveData>(data).position;
             var level = JsonUtility.FromJson<SaveData>(data).levels;
             var index = JsonUtility.FromJson<SaveData>(data).levels;
+            var hubEncounter = JsonUtility.FromJson<SaveData>(data).levels;
 
             transform.position = pos;
             lastPosition = pos;
@@ -55,6 +56,9 @@ namespace Lowscope.Saving.Components
 
             PlayerMoveMent.checkpointIndexCompleted = index;
             checkpointIndex = index;
+
+            PlayerMoveMent.isFirstPlayerHubEncounter = hubEncounter;
+            isFirstPlayerHubEncounter = hubEncounter;
         }
 
         public string OnSave()
@@ -62,12 +66,19 @@ namespace Lowscope.Saving.Components
             lastPosition = transform.position;
             completedLevels = PlayerMoveMent.levelsCompleted;
             checkpointIndex = PlayerMoveMent.checkpointIndexCompleted;
-            return JsonUtility.ToJson(new SaveData { position = lastPosition, levels = completedLevels, index = checkpointIndex});
+            isFirstPlayerHubEncounter = PlayerMoveMent.isFirstPlayerHubEncounter;
+            return JsonUtility.ToJson(new SaveData { position = lastPosition, 
+            levels = completedLevels, 
+            index = checkpointIndex, 
+            firstHubEncounter = isFirstPlayerHubEncounter});
         }
 
         public bool OnSaveCondition()
         {
-            return lastPosition != transform.position || completedLevels != PlayerMoveMent.levelsCompleted || checkpointIndex != PlayerMoveMent.checkpointIndexCompleted;
+            return lastPosition != transform.position || 
+            completedLevels != PlayerMoveMent.levelsCompleted || 
+            checkpointIndex != PlayerMoveMent.checkpointIndexCompleted || 
+            isFirstPlayerHubEncounter != PlayerMoveMent.isFirstPlayerHubEncounter;
         }
     }
 }
