@@ -18,11 +18,15 @@ public class EndLevelTeleporter : MonoBehaviour
     {
         if(questItems.Count <= 0)
         {
-            Scene tutScene = SceneManager.GetActiveScene();
+            /*Scene tutScene = SceneManager.GetActiveScene();
             if(tutScene.name == "TutFear")
             {
-                PlayerMoveMent.isFirstPlayerHubEncounter = 1;
-            }
+                PlayerMoveMent.isFirstPlayerHubEncounter = 0;
+            }*/
+
+            //int nextSceneIndex = SceneManager.GetActiveScene().buildIndex +1;
+
+            //SceneManager.LoadScene(nextSceneIndex);
 
             SceneManager.LoadScene("PlayerStart");
         }
